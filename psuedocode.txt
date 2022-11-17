@@ -1,6 +1,0 @@
- get the status of the current tab
- if tab is audible
-    mute the page
-    unles it is excluded like youtube etc
-
-so what permissions for the tabs

@@ -8,10 +8,6 @@
     "background":{
       "service_worker": "popup.js"
     },
-    "host_permissions": [
-      "http://*/*",
-      "https://*/*"
-    ],
     "permissions": [
       "activeTab"
     ]

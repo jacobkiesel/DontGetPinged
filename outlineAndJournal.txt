@@ -1,0 +1,23 @@
+ get the status of the current tab
+ if tab is audible
+    mute the page
+    unles it is excluded like youtube etc
+
+so what permissions for the tabs
+
+//////
+
+11/16/2022
+
+On the second day I was able to call the chrome tabs api and get the information 
+of tabs that meet a requirement, in our case, audible. 
+
+I've also been able to implement promises and async await to get the live status
+of the tab.
+
+Now, I need to find a way to have this check run either costantly, 
+or only when new windows open but in my experience is that those chat bots can
+ping when you return to a tab, so I'll make it rad constantly and check performance
+
+I think tomorrow I will try to mute tabs as they appear in the output.
+should probably add a timeout after a page has been detected to make a sound
