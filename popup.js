@@ -1,18 +1,3 @@
-// chrome.tabs.onActivated.addListener(moveToFirstPosition);
-
-// async function moveToFirstPosition(activeInfo) {
-//   try {
-//     await chrome.tabs.move(activeInfo.tabId, {index: 0});
-//     console.log('Success.');
-//   } catch (error) {
-//     if (error == 'Error: Tabs cannot be edited right now (user may be dragging a tab).') {
-//       setTimeout(() => moveToFirstPosition(activeInfo), 50);
-//     } else {
-//       console.error(error);
-//     }
-//   }
-// }
-
 // TODO Find me a way to exclude sites from being asked at all
 
 // If (this site is whitelisted)
@@ -23,11 +8,18 @@
 const intervalID = setInterval(run, 50);
 
 // TODO Find a way to unmute the page after its been muted AND stop the process from running on this tab again.
+// this function can be called to toggle the muted state of tabs. If we toggle its muted state, we should also set a request to stop asking on this page.
+async function toggleMuteState(tabId) {
+  const tab = await chrome.tabs.get(tabId);
+  const muted = !tab.mutedInfo.muted;
+  await chrome.tabs.update(tabId, { muted });
+  console.log(`Tab ${tab.id} is ${muted ? 'muted' : 'unmuted'}`);
+}
 
 let queryOptions = { audible: true };
 async function talkingTabs() {
   let [tab] = await chrome.tabs.query(queryOptions);
-
+  // TODO find out if all tabs are to be returned in an array/ probably has to do with manifest permissions specifically the activeTab permission.
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (tab) {
